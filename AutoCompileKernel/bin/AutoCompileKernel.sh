@@ -4,14 +4,14 @@ cd $(dirname $(realpath $0))
 source ./CompileValue.txt
 # Get newest version from web page
 # Get all version of release
-Version=($(curl -s $GitHubWeb | egrep "tag-name" |sed -e 's/<span class="tag-name">//g' |sed -e 's/<\/span>//g' |grep $FixVersion ))
+Version=($(curl -s $HardkernelWeb |egrep "href="  |egrep tar.gz |tr "\"" "\n" | tr "/" "\n"| egrep $FixVersion  |sed 's/.tar.gz//g' ))
 egrep "^$FixVersion" <<< ${Version[0]} &>/dev/null
 if [ "$?"  -ne "0" ]; then
     echo "Newest version not support,exit"
     exit 1
 fi
 # Get the last version of release
-DownloadPage="${FixWeb}$(curl -s ${GitHubWeb} |egrep "<a href=" | grep "${Version[0]}" |egrep ".tar.gz" |tr "\"" "\n"  | egrep ".tar.gz" )"
+DownloadPage="${FixWeb}$(curl -s $HardkernelWeb |egrep "href="  |egrep tar.gz |tr "\"" "\n" | egrep $FixVersion |egrep ${Version[0]})"
 echo "Using this web page to download newest version: $DownloadPage"
 DownloadName=$(tr "\/" "\n" <<< ${DownloadPage} |egrep ".tar.gz")
 echo "Download name is $DownloadName"
