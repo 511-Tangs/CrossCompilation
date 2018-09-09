@@ -1,16 +1,16 @@
-# Source web page and fix version
-GitHubWeb='https://github.com/hardkernel/linux/releases'
+HardkernelWeb='https://github.com/hardkernel/linux/releases'
 FixWeb='https://github.com'
 FixVersion='4.14'
 
 # Cross compilation value
 Arch='arm'
+#CrossCC="$(realpath ../toolchain/gcc-linaro-7.2.1-2017.11-x86_64_arm-linux-gnueabihf)/bin/arm-linux-gnueabihf- "
 CrossCC="$(realpath ../toolchain/gcc-linaro-4.9-2016.02-x86_64_arm-linux-gnueabihf)/bin/arm-linux-gnueabihf- "
 
-# Default odroid defconfig 
+# Default odroid defconfig
 Defconfig='odroidxu4_kvm_defconfig'
 
-# Linux kernel modules 
+# Linux kernel modules
 ModuleWiFi='B43 B43LEGACY USB_HCD_BCMA USB_HCD_SSB'
 ModuleRTL='RTLLIB RTLLIB_CRYPTO_CCMP RTLLIB_CRYPTO_TKIP RTLLIB_CRYPTO_WEP'
 Module9p='NET_9P NET_9P_VIRTIO NET_9P_XEN 9P_FS'
@@ -39,11 +39,11 @@ DenyPSCI='ARM_HIGHBANK_CPUIDLE'
 DenyAll="$DenyTouch $DenyPSCI $DenyWiFi"
 
 # Linux cmdline string
-cmdline="console=ttySAC2,115200n8 vmalloc=256M fsck.repair=yes net.ifnames=0 "
+cmdline="vmalloc=256M fsck.repair=yes net.ifnames=0 "
 
 #Linux kernel patch dir
-PatchDir='/opt/Kernel/patch'
+PatchDir='/src1/Kernel/patch'
 # Nfs mount point
-# NFSPATH='NFSIP:/nfs/common'   ### NFSIP is the NFS server's public IP
-# NFSFIXPATH='DebPackages/kerneldeb/'
-# NFSMOUNT='/mnt/tmp'
+NFSPATH='$NFSIP:/nfs/common'
+NFSFIXPATH='DebPackages/kerneldeb/'
+NFSMOUNT='/mnt/tmp'
