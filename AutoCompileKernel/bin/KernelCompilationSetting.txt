@@ -42,7 +42,7 @@ DenyAll="$DenyTouch $DenyPSCI $DenyWiFi"
 cmdline="vmalloc=256M fsck.repair=yes net.ifnames=0 "
 
 #Linux kernel patch dir
-PatchDir='/src1/Kernel/patch'
+PatchDir='$(pwd)/../patch'
 # Nfs mount point
 NFSPATH='$NFSIP:/nfs/common'
 NFSFIXPATH='DebPackages/kerneldeb/'
