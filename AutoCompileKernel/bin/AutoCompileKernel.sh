@@ -61,7 +61,7 @@ cd linux-${Version[0]}
 # Find patch dir
 if [ -d $patchd ]; then
     echo "Found Linux kernel patch directory, check and install patch file."
-    patchfiles=($( find /opt/Kernel/patch -name "*.patch" ))
+    patchfiles=($( find $patchd -name "*.patch" ))
     if [ "a${#patchfiles[@]}" == "a0" ]; then
         echo "No patch file found."
     else
